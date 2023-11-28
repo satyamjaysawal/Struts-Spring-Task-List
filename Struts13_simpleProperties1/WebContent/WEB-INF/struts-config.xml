@@ -1,0 +1,30 @@
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+<struts-config>
+
+    <!-- Display Name and Description (Optional) -->
+    <display-name>My Struts Application</display-name>
+    <description>Configuration for My Struts Application</description>
+
+    <!-- Form Bean Definitions -->
+    <form-beans>
+        <form-bean name="greetForm" type="com.example.GreetForm"/>
+    </form-beans>
+
+    <action-mappings>
+       
+        <action path="/greet" type="com.example.GreetAction" name="greetForm" scope="request">
+            <forward name="success" path="/greet.jsp"/>
+        </action>
+
+        <action path="/index" forward="/index.jsp"/>
+    </action-mappings>
+
+
+
+    <!-- Message Resources -->
+    <message-resources parameter="com.example.message"/>
+
+ 
+
+    
+</struts-config>
