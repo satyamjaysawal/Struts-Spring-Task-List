@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Employee Management Application</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+
+	<header>
+		<nav class="navbar navbar-light bg-light">
+			<a class="navbar-brand" th:href="@{/list}">Employee Management</a>
+		</nav>
+	</header>
+	<br>
+
+	<div class="container col-md-6">
+		<div class="card">
+			<div class="card-body">
+				<form th:action="${employee != null ? '/update' : '/insert'}" th:object="${employee}" method="post">
+
+					<h2 th:text="${employee != null ? 'Edit Employee' : 'Add New Employee'}"></h2>
+
+					<input type="hidden" name="id" th:value="${employee != null ? employee.id : ''}" />
+
+					<div class="form-group">
+						<label for="firstname">Employee First Name</label>
+						<input type="text" class="form-control" id="firstname" name="firstname"
+							th:value="${employee != null ? employee.firstname : ''}" required="required">
+					</div>
+
+					<div class="form-group">
+						<label for="lastname">Employee Last Name</label>
+						<input type="text" class="form-control" id="lastname" name="lastname"
+							th:value="${employee != null ? employee.lastname : ''}" required="required">
+					</div>
+
+					<div class="form-group">
+						<label for="email">Employee Email</label>
+						<input type="email" class="form-control" id="email" name="email"
+							th:value="${employee != null ? employee.email : ''}" required="required"
+							placeholder="johndoe@example.com"
+							pattern="[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*"
+							title="Enter a valid email address">
+					</div>
+
+					<div class="form-group">
+						<label for="streetAddress">Street Address</label>
+						<input type="text" class="form-control" id="streetAddress" name="address.streetAddress"
+							th:value="${employee != null ? employee.address?.streetAddress : ''}" required="required">
+					</div>
+
+					<div class="form-group">
+						<label for="apartment">Apartment</label>
+						<input type="text" class="form-control" id="apartment" name="address.apartment"
+							th:value="${employee != null ? employee.address?.apartment : ''}" required="required">
+					</div>
+
+					<div class="form-group">
+						<label for="city">City</label>
+						<input type="text" class="form-control" id="city" name="address.city"
+							th:value="${employee != null ? employee.address?.city : ''}" required="required">
+					</div>
+
+
+					<div class="form-group">
+						<label for="phoneNumber">Phone Number</label>
+						<input type="text" class="form-control" id="phoneNumber" name="phoneNumber"
+							th:value="${employee != null ? employee.phoneNumber : ''}" required="required">
+					</div>
+
+					<button type="submit" class="btn btn-success">Save</button>
+					<a th:href="@{/list}" class="btn btn-secondary">Cancel</a>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
